@@ -85,24 +85,24 @@ $$ y_k = \sigma \left(\sum_{j=1}^{K} w_{kj}^{(2)} \sigma \left( \sum_{i=1}^{M} w
 se demostrará que existe una red equivalente que calcula exactamente igual pero con función de activación en la capa oculta dada por la tangente hiperbólica.\\
 
 
-Para ello desarrollamos la función tangente hiperbólica para encontrar la relación con la función logística: 
-$$\tanh \left( \alpha \frac{x}{2} \right) =  \frac{1 - e^{- \alpha v}}{1 + e^{- \alpha v}} = \frac{1}{1 + e^{- \alpha v}} - \frac{e^{- \alpha v}}{1 + e^{- \alpha v}} = \frac{1}{1 + e^{- \alpha v}} - \frac{e^{- \alpha v} + 1 - 1}{1 + e^{- \alpha v}} = $$ 
+Para ello desarrollamos la función de activación tangente hiperbólica para encontrar la relación con la función logística: 
+$$\phi (x)= \tanh \left( \alpha \frac{x}{2} \right) =  \frac{1 - e^{- \alpha v}}{1 + e^{- \alpha v}} = \frac{1}{1 + e^{- \alpha v}} - \frac{e^{- \alpha v}}{1 + e^{- \alpha v}} = \frac{1}{1 + e^{- \alpha v}} - \frac{e^{- \alpha v} + 1 - 1}{1 + e^{- \alpha v}} = $$ 
 
 $$\frac{1}{1 + e^{- \alpha v}} + \frac{1}{1 + e^{- \alpha v}} - \frac{1+e^{- \alpha v}}{1 + e^{- \alpha v}} $$\\
 y por la definición de función logística nos queda que:
 
-$$\tanh \left( \alpha \frac{x}{2} \right) = 2\sigma(x) - 1 $$
+$$\phi (x) = 2\sigma(x) - 1 $$
 
 $$ \implies
-\sigma(x) = \frac{\tanh \left( \alpha \frac{x}{2} \right) + 1}{2} \quad (1)$$
+\sigma(x) = \frac{\phi (x) + 1}{2} \quad (1)$$
 
 Luego, sustituyendo (1) en la capa oculta de la red neuronal inicial tenemos que
 
-$$ y_k = \sigma \left(\sum_{j=1}^{K} w_{kj}^{(2)} \left( \frac{\tanh \left( \frac{\alpha}{2} \sum_{i=1}^{M} w_{ji}^{(1)}x_i \right ) + 1}{2}\right) \right)$$
+$$ y_k = \sigma \left(\sum_{j=1}^{K} w_{kj}^{(2)} \left( \frac{\phi \left( \sum_{i=1}^{M} w_{ji}^{(1)}x_i \right ) + 1}{2}\right) \right)$$
 
-$$ \implies y_k = \sigma \left(\sum_{j=1}^{K} \frac{w_{kj}^{(2)}}{2} \tanh \left( \sum_{i=1}^{M} \frac{\alpha}{2} w_{ji}^{(1)}x_i \right ) + \sum_{j=1}^{K} \frac{w_{kj}}{2}  \right)$$
+$$ \implies y_k = \sigma \left(\sum_{j=1}^{K} \frac{w_{kj}^{(2)}}{2} \phi \left( \sum_{i=1}^{M} w_{ji}^{(1)}x_i \right ) + \sum_{j=1}^{K} \frac{w_{kj}}{2}  \right)$$
 es la red equivalente.\\
 
-Podemos observar que el peso sináptico de la capa (2) ahora equivale a la mitad y el sesgo que antes era nulo en dicha capa aumentó a ser la mitad de los pesos mencionados, mientras en la capa (1) el peso cambió $\frac{\alpha}{2}$ veces.
+Podemos observar que el peso sináptico de la capa (2) ahora equivale a la mitad y el sesgo que antes era nulo en dicha capa aumentó a ser la mitad de los pesos mencionados.
 
 \end{document}
